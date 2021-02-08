@@ -14,29 +14,22 @@ For example, start with 87:
  726 +  627 = 1353     - step 3, not a palindrome
 1353 + 3531 = 4884     - step 4, palindrome!
  */
-
 var palindromeChainLength = function(n) {
-    var steps = 0;
-    while(!isPalindromic(n)) {
-      steps++;
-      n+=reverseNum(n);
-    }
-    return steps;
-  };
 
-  function isPalindromic(n) {
-    if (n < 0) throw 'isPalindromic only works for positive numbers.';
-    if (Math.floor(n / 10) === 0) return true; // Single digit numbers are palindromic.
-    if (n % 10 === 0) return false; // n > 0, without leading 0s cannot be palindromic if ending in 0.
-    return reverseNum(n) === n;
-  }
-
-  function reverseNum(n) {
-    var r = 0;
-    while (n) {
-      r *= 10;
-      r += n % 10;
-      n = Math.floor(n / 10);
+    var reverseDigit = function(d)
+    {
+        return +d.toString().split('').reverse().join('');
     }
-    return r;
-  }
+
+    var attempts = 0,
+        result = 0;
+
+    while(n != reverseDigit(n))
+    {
+        attempts += 1;
+        n += reverseDigit(n);
+    }
+
+    return attempts;
+
+};
