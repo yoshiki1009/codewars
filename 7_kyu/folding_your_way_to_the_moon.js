@@ -10,10 +10,12 @@ Also, if somebody is giving you a negative distance, it's clearly bogus and you 
 function foldTo(distance) {
   let paper = 0.0001;
   let folds = 0;
-  if (distance <= 0) {
+  if (distance == 0) {
+    return 0;
+  } else if (distance < 0) {
     return null;
   } else {
-    while ( distance > paper ) {
+    while (distance > paper) {
       paper *= 2;
       folds += 1;
     }
